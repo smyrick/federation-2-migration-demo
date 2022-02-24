@@ -5,7 +5,7 @@ services:
       - "4000:4000"
     command: yarn start
     env_file:
-      - gateway.env
+      - .env
   products:
     build: ./products
     ports:

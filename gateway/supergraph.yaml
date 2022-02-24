@@ -2,8 +2,8 @@ subgraphs:
   products:
     routing_url: http://localhost:4001
     schema:
-      file: ./products/schema.graphql
+      file: ../products/schema.graphql
   reviews:
     routing_url: http://localhost:4002
     schema:
-      file: ./reviews/schema.graphql
+      file: ../reviews/schema.graphql
