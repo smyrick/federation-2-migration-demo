@@ -1,0 +1,22 @@
+name: Reviews Publish
+on:
+  push:
+    branches: [main]
+    paths:
+      - "products/**"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: my-graph@prod
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/v0.1.0 | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Publish products
+        run: |
+          rover subgraph publish $APOLLO_GRAPH_REF --schema ./products/schema.graphql --name products

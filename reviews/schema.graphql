@@ -1,0 +1,16 @@
+extend type Product @key(fields: "id") {
+  id: ID! @external
+  price: Price @external
+  reviews: [Review]
+}
+
+type Review {
+  id: ID!
+  rating: Int
+  product: Product @provides(fields: "price")
+}
+
+type Price {
+  amount: Int
+  currencyCode: String
+}
